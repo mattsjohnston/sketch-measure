@@ -3,12 +3,16 @@
 
 var alert = createAlertBase(),
     types = ['LDPI @0.75x (dp)', 'MDPI @1x (dp)', 'HDPI @1.5x (dp)', 'XHDPI @2x (dp)', 'XXHDPI @3x (dp)', 'XXXHDPI @4x (dp)', 'Standard @1x (px)', 'Retina @2x (pt)'],
-    index = getIndex(types, configs.resolution);
+    resizeMeasurementUiMultipliers = [1, 1.5, 2, 3],
+    index = getIndex(types, configs.resolution),
+    resizeIndex = getIndex(resizeMeasurementUiMultipliers, configs.resizeUiMultiplier);
 
 [alert setMessageText: 'Setting Design Resolution']
 [alert setInformativeText: 'Change design resolution and reset all Guide unit.']
 [alert addTextLabelWithValue: 'Resolution:']
 [alert addAccessoryView: createSelect(types, index)]
+[alert addTextLabelWithValue: 'UI Size Multiplier']
+[alert addAccessoryView: createSelect(resizeMeasurementUiMultipliers, resizeIndex)]
 
 var responseCode = [alert runModal];
 
@@ -20,6 +24,11 @@ function handleAlertResponse(alert, responseCode) {
     if(resolution != configs.resolution) {
       Reset.Unit(resolution);
       setConfig('resolution', resolution);
+    }
+
+    var resizeUiMultiplier = valueAtIndex(alert, 3);
+    if(resizeUiMultiplier != configs.resizeUiMultiplier) {
+      setConfig('resizeUiMultiplier', resizeUiMultiplier);
     }
 
   }

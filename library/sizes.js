@@ -19,9 +19,9 @@ var MeasureSizes = function(layer, mode, position, idname) {
       setSize(gap, 8, 8);
 
       [text setStringValue: updateLength(rect.width)];
-      [text setFontSize: configs.fontSize];
+      [text setFontSize: scaleValue(configs.fontSize)];
       [text setFontPostscriptName: configs.fontType];
-      [text setLineSpacing: parseInt(configs.fontSize * 1.2)];
+      [text setLineSpacing: scaleValue(parseInt(configs.fontSize * 1.2))];
       [gap setRotation: 45];
 
       var textRect   = getRect(text),
@@ -70,9 +70,9 @@ var MeasureSizes = function(layer, mode, position, idname) {
       setSize(gap, 8, 8);
 
       [text setStringValue: updateLength(rect.height)];
-      [text setFontSize: configs.fontSize];
+      [text setFontSize: scaleValue(configs.fontSize)];
       [text setFontPostscriptName: configs.fontType];
-      [text setLineSpacing: configs.fontSize];
+      [text setLineSpacing: scaleValue(configs.fontSize)];
       [gap setRotation: 45];
 
       var textRect   = getRect(text),

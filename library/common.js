@@ -227,11 +227,17 @@ function creatCheckbox (item, checked) {
   return checkbox;
 }
 
+function scaleValue (val) {
+  log([val, resolution[configs.resolution]]);
+  return val * configs.resizeUiMultiplier;
+}
+
 function initConfigs(){
   var version = getConfig('version');
   if(!version){
     setConfig('version', '0.0.3.1');
     setConfig('resolution', 'Standard @1x (px)');
+    setConfig('resizeUiMultiplier', 1);
     setConfig('font-size', 12);
     setConfig('font-type', 'Helvetica');
     setConfig('size-basic', '#D0021B');
@@ -262,6 +268,7 @@ function initConfigs(){
 
   configs.version  = getConfig('version');
   configs.resolution  = getConfig('resolution');
+  configs.resizeUiMultiplier = getConfig('resizeUiMultiplier');
   configs.fontSize = getConfig('font-size');
   configs.fontType = getConfig('font-type');
   configs.sizeBasic = getConfig('size-basic');

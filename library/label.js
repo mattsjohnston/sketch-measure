@@ -9,13 +9,13 @@ var CreateLabel = function(layer, content, position, data, idname){
         text = addText('text', group);
 
     [text setStringValue: content];
-    [text setFontSize: configs.fontSize];
+    [text setFontSize: scaleValue(configs.fontSize])
     [text setFontPostscriptName: configs.fontType];
-    [text setLineSpacing: parseInt(configs.fontSize * 1.2)];
+    [text setLineSpacing: scaleValue(parseInt(configs.fontSize * 1.2))];
 
     var textRect   = getRect(text),
-        labelWidth  = textRect.width + 10,
-        labelHeight = textRect.height + 10;
+        labelWidth  = textRect.width + scaleValue(20),
+        labelHeight = textRect.height + scaleValue(20);
 
     setSize(label, labelWidth, labelHeight);
     setSize(gap, 8, 8);
@@ -45,7 +45,7 @@ var CreateLabel = function(layer, content, position, data, idname){
       gX   = rect.x - labelWidth - 6;
     }
 
-    setPosition(text, 5, 5);
+    setPosition(text, scaleValue(10), scaleValue(10));
     setPosition(gap, gapX, gapY);
     setPosition(group, gX, gY, true);
 
